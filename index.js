@@ -4,13 +4,26 @@ const mongoose = require('mongoose')
 const User = require('./model/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-require('dotenv').config();                // deploying time -> to use functionalities of env
+const dotenv = require('dotenv');
+// require('dotenv').config();                // deploying time -> to use functionalities of env
 
 const app = express()
 app.use(cors())                                                        // just to allow communication b/w cross origin (client and server on diff server/local host port ) // not needed on production
 app.use(express.json())                                               // parse any thing that comes into req.body into json
 
-mongoose.connect('mongodb+srv://sahil:sahil123@cluster0.6mb70ra.mongodb.net/login-reg?retryWrites=true&w=majority')             // google moogose.connect  to goto documentation
+dotenv.config({path:'./.env'});
+
+const DB = process.env.DATABASE;
+
+mongoose
+    .connect(DB, {
+        useNewUrlParser: true,
+        // useCreateIndex: true,
+        // useFindAndModify: false,
+    })
+    .then(()=>console.log('DB connection successful'));
+
+// mongoose.connect('mongodb+srv://sahil:sahil123@cluster0.6mb70ra.mongodb.net/login-reg?retryWrites=true&w=majority')             // google moogose.connect  to goto documentation
 
 // setting route
 
