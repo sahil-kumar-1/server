@@ -10,7 +10,7 @@ const app = express()
 app.use(cors())                                                        // just to allow communication b/w cross origin (client and server on diff server/local host port ) // not needed on production
 app.use(express.json())                                               // parse any thing that comes into req.body into json
 
-mongoose.connect('mongodb://localhost:27017/login-reg')             // google moogose.connect  to goto documentation
+mongoose.connect('mongodb+srv://sahil:sahil@123@cluster0.6mb70ra.mongodb.net/login-reg?retryWrites=true&w=majority')             // google moogose.connect  to goto documentation
 
 // setting route
 
